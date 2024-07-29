@@ -1,3 +1,3 @@
 SELECT *
 FROM emp
-WHERE deptno > 10;
+WHERE deptno = 10;
