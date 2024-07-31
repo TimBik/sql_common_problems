@@ -1,13 +1,13 @@
 CREATE TABLE dept
 (
-    deptno INTEGER primary key,
+    deptno INTEGER PRIMARY KEY,
     dname  VARCHAR(31),
     loc    VARCHAR(31)
 );
 
 CREATE TABLE emp
 (
-    empno    INTEGER primary key,
+    empno    INTEGER PRIMARY KEY,
     ename    VARCHAR(31),
     job      VARCHAR(31),
     mgr      INTEGER,
@@ -45,7 +45,7 @@ VALUES (7369, 'SMITH', 'CLERK', 7902, '2005-12-17', 800, NULL, 20),
 
 CREATE TABLE t1
 (
-    id    INTEGER primary key
+    id INTEGER PRIMARY KEY
 );
 
 INSERT INTO t1 (id)
@@ -53,21 +53,34 @@ SELECT 1;
 
 CREATE TABLE t10
 (
-    id    INTEGER primary key
+    id INTEGER PRIMARY KEY
 );
 INSERT INTO t10 (id)
 SELECT generate_series(1, 10);
 
 CREATE TABLE t100
 (
-    id    INTEGER primary key
+    id INTEGER PRIMARY KEY
 );
 INSERT INTO t100 (id)
 SELECT generate_series(1, 100);
 
 CREATE TABLE t500
 (
-    id    INTEGER primary key
+    id INTEGER PRIMARY KEY
 );
 INSERT INTO t500 (id)
 SELECT generate_series(1, 500);
+
+
+CREATE TABLE emp_bonus
+(
+    empno    INTEGER PRIMARY KEY,
+    received DATE,
+    type     INTEGER
+);
+
+INSERT INTO emp_bonus (empno, received, type)
+VALUES (7369, '14-MAR-2005', 1),
+       (7900, '14-MAR-2005', 2),
+       (7788, '14-MAR-2005', 3);
