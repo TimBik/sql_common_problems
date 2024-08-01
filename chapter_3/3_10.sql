@@ -45,18 +45,18 @@ WHERE e.empno = eb.empno
 
 
 SELECT e.empno,
-             e.ename,
-             e.sal,
-             e.deptno,
-             (e.sal * CASE
-                          WHEN eb.type = 1 THEN .1
-                          WHEN eb.type = 2 THEN .2
-                          WHEN eb.type = 3 THEN .3
-                          ELSE 0 END)
-                 AS bonus
-      FROM emp e
-               LEFT OUTER JOIN emp_bonus eb ON (e.empno = eb.empno)
-      WHERE e.deptno = 10;
+       e.ename,
+       e.sal,
+       e.deptno,
+       (e.sal * CASE
+                    WHEN eb.type = 1 THEN .1
+                    WHEN eb.type = 2 THEN .2
+                    WHEN eb.type = 3 THEN .3
+                    ELSE 0 END)
+           AS bonus
+FROM emp e
+         LEFT OUTER JOIN emp_bonus eb ON (e.empno = eb.empno)
+WHERE e.deptno = 10;
 
 
 SELECT deptno,
@@ -77,3 +77,21 @@ FROM (SELECT e.empno,
                LEFT OUTER JOIN emp_bonus eb ON (e.empno = eb.empno)
       WHERE e.deptno = 10) x
 GROUP BY deptno;
+
+
+SELECT d.deptno,
+       d.total_sal,
+       sum(e.sal * CASE
+                       WHEN eb.type = 1 THEN .1
+                       WHEN eb.type = 2 THEN .2
+                       WHEN eb.type = 3 THEN .3
+                       ELSE 0 END) AS total_bonus
+FROM emp e,
+     emp_bonus eb,
+     (select deptno, sum(sal) AS total_sal
+      FROM emp
+      WHERE deptno = 10
+      GROUP BY deptno) d
+WHERE d.deptno = e.deptno
+  AND e.empno = eb.empno
+GROUP BY d.deptno, d.total_sal;
