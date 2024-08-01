@@ -1,3 +1,11 @@
+TRUNCATE emp_bonus;
+
+INSERT INTO emp_bonus (empno, received, type)
+VALUES (7369, '14-MAR-2005', 1),
+       (7900, '14-MAR-2005', 2),
+       (7788, '14-MAR-2005', 3);
+
+
 SELECT *
 FROM emp_bonus;
 

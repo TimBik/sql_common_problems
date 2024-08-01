@@ -75,12 +75,7 @@ SELECT generate_series(1, 500);
 
 CREATE TABLE emp_bonus
 (
-    empno    INTEGER PRIMARY KEY,
+    empno    INTEGER,
     received DATE,
     type     INTEGER
 );
-
-INSERT INTO emp_bonus (empno, received, type)
-VALUES (7369, '14-MAR-2005', 1),
-       (7900, '14-MAR-2005', 2),
-       (7788, '14-MAR-2005', 3);
